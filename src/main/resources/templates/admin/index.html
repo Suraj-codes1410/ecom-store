@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org"
+      th:replace="~{base::Layout(~{::section})}">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+<section>
+  <div class="container p-5">
+    <p class="text-center fs-3 mt-4">Admin DashBoard</p>
+    <div class="row p-5">
+      <div class="col-md-4">
+        <a href="/admin/loadaddproduct" class="text-decoration-none">
+        <div class="card shadow p-3 mb-5 bg-body rounded">
+          <div class="card-body text-center text-primary">
+            <i class="fa-solid fa-square-plus fa-3x text-primary"></i>
+            <h4 class="mt-1">Add Products</h4>
+          </div>
+        </div>
+        </a>
+      </div>
+
+      <div class="col-md-4">
+        <a href="/admin/category" class="text-decoration-none">
+          <div class="card  shadow p-3 mb-5 bg-body rounded">
+            <div class="card-body text-center text-warning">
+              <i class="fa-solid fa-layer-group fa-3x text-warning"></i>
+              <h4 class="mt-1">Add Category</h4>
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <div class="col-md-4">
+        <a href="/admin/products" class="text-decoration-none">
+          <div class="card  shadow p-3 mb-5 bg-body rounded">
+            <div class="card-body text-center text-success">
+              <i class="fa-solid fa-table-cells fa-3x text-success"></i>
+              <h4 class="mt-1">View Products</h4>
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <div class="col-md-4">
+        <a href="#" class="text-decoration-none">
+          <div class="card  shadow p-3 mb-5 bg-body rounded">
+            <div class="card-body text-center text-warning">
+              <i class="fa-solid fa-box-open fa-3x text-warning"></i>
+              <h4 class="mt-1">Order</h4>
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <div class="col-md-4">
+        <a href="#" class="text-decoration-none">
+          <div class="card  shadow p-3 mb-5 bg-body rounded">
+            <div class="card-body text-center text-primary">
+              <i class="fa-solid fa-circle-user fa-3x text-warning"></i>
+              <h4 class="mt-1">User</h4>
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <div class="col-md-4">
+        <a href="#" class="text-decoration-none">
+          <div class="card  shadow p-3 mb-5 bg-body rounded">
+            <div class="card-body text-center text-primary">
+              <i class="fa-solid fa-user-plus fa-3x text-warning"></i>
+              <h4 class="mt-1">Add Admin</h4>
+            </div>
+          </div>
+        </a>
+      </div>
+
+
+    </div>
+  </div>
+
+</section>
+</body>
+</html>

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org"
+th:replace="~{base::Layout(~{::section})}">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<section>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .product-card {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 8px rgba(0,0,0,0.3);
+        }
+        .price {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        .old-price {
+            text-decoration: line-through;
+            color: gray;
+            margin-left: 10px;
+            font-size: 1rem;
+        }
+        .discount {
+            color: green;
+            font-weight: bold;
+            margin-left: 10px;
+        }
+        .features i {
+            font-size: 1.5rem;
+            color: red;
+        }
+        .features p {
+            margin-top: 5px;
+            font-size: 0.9rem;
+        }
+    </style>
+    </head>
+    <body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <a class="navbar-brand" href="#">Ecom Store</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Product</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Category</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Login</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Register</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Admin</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Product Section -->
+    <div class="container my-5">
+        <div class="product-card mx-auto col-md-8">
+            <div class="row g-4">
+                <!-- Product Image -->
+                <div class="col-md-5 text-center">
+                    <img src="/img/products/productlaptop.webp" class="img-fluid" alt="Laptop">
+                </div>
+                <!-- Product Details -->
+                <div class="col-md-7">
+                    <h3>Laptop</h3>
+                    <p><strong>Description :</strong> Hp Laptop, 256GB SSD</p>
+                    <h6><strong>Product Details:</strong></h6>
+                    <p>Status: <span class="badge bg-success">Available</span> <span class="badge bg-warning text-dark">Out of Stock</span></p>
+                    <p>Category: Laptop</p>
+                    <p>Policy: 7 Days Replacement & Return</p>
+
+                    <!-- Price -->
+                    <p class="price">₹ 7000 <span class="old-price">14000</span> <span class="discount">50% off</span></p>
+
+                    <!-- Features -->
+                    <div class="row text-center features">
+                        <div class="col">
+                            <i class="fa-solid fa-money-bill-wave"></i>
+                            <p>Cash On Delivery</p>
+                        </div>
+                        <div class="col">
+                            <i class="fa-solid fa-rotate-left"></i>
+                            <p>Return Available</p>
+                        </div>
+                        <div class="col">
+                            <i class="fa-solid fa-truck"></i>
+                            <p>Free Shipping</p>
+                        </div>
+                    </div>
+
+                    <!-- Add to Cart Button -->
+                    <button class="btn btn-danger w-100 mt-3">Add To Cart</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+</body>
+</html>
