@@ -52,7 +52,6 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Product updateProduct(Product product , MultipartFile image )  {
-
         Product dbProduct = getProductById(product.getId());
 
         dbProduct.setTitle(product.getTitle());
@@ -60,25 +59,32 @@ public class ProductServiceImpl implements ProductService {
         dbProduct.setCategory(product.getCategory());
         dbProduct.setPrice(product.getPrice());
         dbProduct.setStock(product.getStock());
+        dbProduct.setDiscount(product.getDiscount());
+
+        // calculate final discounted price
+        Double discount = product.getPrice() * (product.getDiscount() / 100.0);
+        Double discountPrice = product.getPrice() - discount;
+        dbProduct.setDiscountPrice(discountPrice);
 
         String imageName = image.isEmpty() ? dbProduct.getImage() : image.getOriginalFilename();
         dbProduct.setImage(imageName);
-        Product updateProduct = productRepository.save(dbProduct);
-        if (!ObjectUtils.isEmpty(updateProduct)) {
-            if (!image.isEmpty()) {
-                try {
-                    File saveFile = new ClassPathResource("static/img").getFile();
-                    Path path = Paths.get(saveFile.getAbsolutePath()
-                            + File.separator + "products"
-                            + File.separator + image.getOriginalFilename());
 
-                    Files.copy(image.getInputStream(), path, StandardCopyOption.REPLACE_EXISTING);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+        Product updatedProduct = productRepository.save(dbProduct);
+
+        if (!ObjectUtils.isEmpty(updatedProduct) && !image.isEmpty()) {
+            try {
+                File saveFile = new ClassPathResource("static/img").getFile();
+                Path path = Paths.get(saveFile.getAbsolutePath()
+                        + File.separator + "products"
+                        + File.separator + image.getOriginalFilename());
+
+                Files.copy(image.getInputStream(), path, StandardCopyOption.REPLACE_EXISTING);
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-
         }
-       return updateProduct;
+
+        return updatedProduct;
     }
+
 }

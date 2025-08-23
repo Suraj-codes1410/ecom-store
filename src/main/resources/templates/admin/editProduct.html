@@ -9,7 +9,7 @@
 <section>
     <div class="container  p-5 mt-3">
         <div class="row">
-            <div class="col-md-6 offset-md-3">
+            <div class="col-md-8 offset-md-2">
                 <div class="card shadow p-3 mb-5 bg-body rounded">
                     <div class="card-header text-center fw-bold ">
                         <p class="fs-4">Edit Product</p>
@@ -38,17 +38,29 @@
                                 <label>Enter Description</label>
                                 <textarea rows="3" cols="" class="form-control" name="description" >[[${product.description}]]</textarea>
                             </div>
-
+                            <div class="row">
                             <div class="mb-3">
                                 <label>Select Category</label><select class="form-control" name="category">
                                 <option>[[${product.category}]]</option>
                                 <option th:each="c:${categories}">[[${c.name}]]</option>
                             </select>
-
                             </div>
-                            <div class="mb-3">
+                            <div class="mb-3 col">
                                 <label>Enter Price</label>
                                 <input type="text" name="price" class="form-control" th:value="${product.price}">
+                            </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="mb-3 col">
+                                    <label>Discount</label>
+                                    <input type="number" name="discount" class="form-control" th:value="${product.discount}">
+                                </div>
+                                <div class="mb-3 col">
+                                    <label>Discount Price</label>
+                                    <input type="number" readonly name="discountPrice" class="form-control" th:value="${product.discountPrice}"
+                                    >
+                                </div>
                             </div>
 
                             <div class="mb-3">
@@ -61,7 +73,7 @@
                                 <input type="file" name="file" class="form-control">
                             </div>
                             <img th:src="@{'/img/products/'+${product.image}}" width="50px" height="70ox">
-                            <button class="btn btn-primary col-md-12">Update </button>
+                            <button class="btn btn-primary col-md-12">Update</button>
                         </form>
                     </div>
 

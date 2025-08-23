@@ -139,6 +139,8 @@ public class AdminController {
 
         String imageName = image.isEmpty() ? "default.jpg" : image.getOriginalFilename();
         product.setImage(imageName);
+        product.setDiscount(0);
+        product.setDiscountPrice(product.getPrice());
 
         Product savedProduct = productService.saveProduct(product);
 
@@ -185,15 +187,18 @@ session.setAttribute("errorMsg","Internal server issues ");
         return "admin/editProduct";
     }
     @PostMapping("/updateProduct")
-    public String updateProduct(@ModelAttribute Product product,@RequestParam("file") MultipartFile image,HttpSession session, Model m ){
+    public String updateProduct(@ModelAttribute Product product,@RequestParam("file") MultipartFile image,HttpSession session, Model m ) {
 
-        Product updateProduct = productService.updateProduct(product,image);
-        if(!ObjectUtils.isEmpty(updateProduct)){
-            session.setAttribute("succMsg","Product Updation was Successfull");
-        }else {
-            session.setAttribute("errorMsg","Something went wrong ");
+        if (product.getDiscount() < 0 || product.getDiscount() > 100) {
+            session.setAttribute("errorMsg", "Invalid Discount");
+        } else {
+            Product updateProduct = productService.updateProduct(product, image);
+            if (!ObjectUtils.isEmpty(updateProduct)) {
+                session.setAttribute("succMsg", "Product Updation was Successfull");
+            } else {
+                session.setAttribute("errorMsg", "Something went wrong ");
+            }
         }
-        return "redirect:/admin/editproducts/"+product.getId();
+            return "redirect:/admin/editproducts/" + product.getId();
+        }
     }
-
-}
