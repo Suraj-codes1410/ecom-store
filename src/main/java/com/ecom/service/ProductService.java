@@ -1,7 +1,10 @@
 package com.ecom.service;
 
 import com.ecom.entity.Product;
+import jakarta.servlet.http.HttpSession;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 
 public interface ProductService {
@@ -14,5 +17,5 @@ public interface ProductService {
 
     public Product getProductById(Integer id);
 
-    public Product updateProduct(Product product);
+    public Product updateProduct(Product product , MultipartFile file);
 }

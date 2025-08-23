@@ -184,10 +184,16 @@ session.setAttribute("errorMsg","Internal server issues ");
         m.addAttribute("categories",categoryService.getAllCategory());
         return "admin/editProduct";
     }
-    @PostMapping("/updateproducts/")
+    @PostMapping("/updateProduct")
     public String updateProduct(@ModelAttribute Product product,@RequestParam("file") MultipartFile image,HttpSession session, Model m ){
 
-        return "admin/editProduct";
+        Product updateProduct = productService.updateProduct(product,image);
+        if(!ObjectUtils.isEmpty(updateProduct)){
+            session.setAttribute("succMsg","Product Updation was Successfull");
+        }else {
+            session.setAttribute("errorMsg","Something went wrong ");
+        }
+        return "redirect:/admin/editproducts/"+product.getId();
     }
 
 }
