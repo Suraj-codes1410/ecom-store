@@ -34,7 +34,8 @@
                         <th scope="col">Category</th>
                         <th scope="col">Price</th>
                         <th scope="col">Discount</th>
-                        <th scope="col">DiscountPrice </th>
+                        <th scope="col">DiscountPrice</th>
+                        <th scope="col">Status</th>
                         <th scope="col">Stock</th>
                         <th scope="col">Action</th>
                     </tr>
@@ -48,6 +49,7 @@
                         <td> [[${p.price}]]</td>
                         <td>[[${p.discount}]]</td>
                         <td>[[${p.discountPrice}]]</td>
+                        <td>[[${p.isActive}]]</td>
                         <td>[[${p.stock}]]</td>
                         <td><a th:href="@{'/admin/editproducts/'+${p.id}}" class="btn btn-sm btn-primary"  style="padding: 2px 8px; font-size: 12px;"><i class="fa-solid fa-pen-to-square"></i>Edit</a>
                             <a th:href="@{'/admin/deleteProduct/'+${p.id}}" class="btn btn-sm btn-danger"  style="padding: 2px 8px; font-size: 12px;"><i class="fa-solid fa-trash "></i>Delete</a></td>

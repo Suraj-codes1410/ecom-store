@@ -58,6 +58,7 @@ public class ProductServiceImpl implements ProductService {
         dbProduct.setDescription(product.getDescription());
         dbProduct.setCategory(product.getCategory());
         dbProduct.setPrice(product.getPrice());
+        dbProduct.setIsActive(product.getIsActive());
         dbProduct.setStock(product.getStock());
         dbProduct.setDiscount(product.getDiscount());
 
@@ -85,6 +86,12 @@ public class ProductServiceImpl implements ProductService {
         }
 
         return updatedProduct;
+    }
+
+    @Override
+    public List getAllActiveProduct() {
+         List<Product> products =  productRepository.findByIsActiveTrue();
+        return products;
     }
 
 }

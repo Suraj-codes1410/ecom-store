@@ -12,6 +12,8 @@ import org.springframework.ui.Model;
 import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 
 import java.io.File;
 import java.io.IOException;
@@ -101,37 +103,35 @@ public class AdminController {
         return "admin/edit_category";
     }
     @PostMapping("/updateCategory")
-    public String updateCategory(@ModelAttribute Category category,@RequestParam("image") MultipartFile file,HttpSession session) throws IOException {
+    public String updateCategory(@ModelAttribute Category category,
+                                 @RequestParam("image") MultipartFile file,
+                                 RedirectAttributes redirectAttributes) throws IOException {
 
         Category oldcategory = categoryService.getCategoryById(category.getId());
         String imageName = file.isEmpty() ? oldcategory.getImageName() : file.getOriginalFilename();
-
 
         if (!ObjectUtils.isEmpty(category)) {
             oldcategory.setName(category.getName());
             oldcategory.setIsActive(category.getIsActive());
             oldcategory.setImageName(imageName);
         }
+
         Category updateCategory = categoryService.saveCategory(oldcategory);
 
         if (!ObjectUtils.isEmpty(updateCategory)) {
-
             if (!file.isEmpty()) {
-
                 File saveFile = new ClassPathResource("static/img").getFile();
-
                 Path path = Paths.get(saveFile.getAbsolutePath() + File.separator + "category" + File.separator + file.getOriginalFilename());
-
-               // System.out.println(path);
                 Files.copy(file.getInputStream(), path, StandardCopyOption.REPLACE_EXISTING);
-                session.setAttribute("succMsg", "Update Successful");
             }
-        }else {
-                session.setAttribute("errorMsg", "Something Went Wrong ");
-            }
-            return "redirect:/admin/loadEditCategory/" + category.getId();
-
+            redirectAttributes.addFlashAttribute("succMsg", "Update Successful");
+        } else {
+            redirectAttributes.addFlashAttribute("errorMsg", "Something Went Wrong");
         }
+
+        return "redirect:/admin/loadEditCategory/" + category.getId();
+    }
+
     @PostMapping("/saveProduct")
     public String saveProduct(@ModelAttribute Product product,
                               HttpSession session,

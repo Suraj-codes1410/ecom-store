@@ -62,6 +62,22 @@
                                     >
                                 </div>
                             </div>
+                            <div class="mb-3">
+                                <label class="fw-semibold">Status</label>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" value="true"  th:checked="${product.isActive==true}"
+                                           name="isActive" id="radioDefault1">
+                                    <label class="form-check-label" for="radioDefault1">
+                                        Active
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" value="false" th:checked="${product.isActive==false}"
+                                           name="isActive" id="radioDefault2" >
+                                    <label class="form-check-label" for="radioDefault2">
+                                        Inactive
+                                    </label>
+                                </div>
 
                             <div class="mb-3">
                                 <label>Enter Stock</label>
@@ -74,6 +90,7 @@
                             </div>
                             <img th:src="@{'/img/products/'+${product.image}}" width="50px" height="70ox">
                             <button class="btn btn-primary col-md-12">Update</button>
+                                <br>
                         </form>
                     </div>
 

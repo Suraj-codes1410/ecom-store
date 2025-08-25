@@ -13,13 +13,14 @@
             <div class="col-md-3 offset-md-5">
                 <div class="card shadow p-3 mb-5 bg-body rounded">
                     <div class="card-header text-center fw-bold fs-4">Edit Category
-                        <th:block th:if="${session.succMsg}">
-                            <p class="text-success fw-bold">[[${session.succMsg}]]</p>
+                        <th:block th:if="${succMsg}">
+                            <p class="text-success fw-bold">[[${succMsg}]]</p>
                         </th:block>
 
-                        <th:block th:if="${session.errorMsg}">
-                            <p class="text-danger fw-bold">[[${session.errorMsg}]]</p>
+                        <th:block th:if="${errorMsg}">
+                            <p class="text-danger fw-bold">[[${errorMsg}]]</p>
                         </th:block>
+
 
                         <!-- Remove messages after showing them -->
                         <th:block th:text="${@commonServiceImpl.removeSessionMessage()}"></th:block>
@@ -53,7 +54,7 @@
 
                             <div class="mb-3">
                                 <label class="fw-semibold">Upload image</label>
-                                <input type="file" class="form-control" name="file">
+                                <input type="file" class="form-control" name="image">
                             </div>
                             <img th:src="@{'/img/category/' + ${category.imageName}}" width="100px" height="100px">
                             <button class="btn btn-primary col-md-12 mt-2">Update</button>
