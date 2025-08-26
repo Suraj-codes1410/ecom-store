@@ -9,7 +9,7 @@ import com.ecom.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-
+import org.springframework.web.bind.annotation.RequestParam;
 
 
 import java.util.List;
@@ -39,13 +39,11 @@ public class HomeController {
 
 
     @GetMapping("/product")
-    public String products(Model m) {
+    public String products(Model m, @RequestParam(value="category" , defaultValue = "") String category) {
         List<Category> categories = categoryService.getAllActiveCategory();
         List<Product> products = productService.getAllActiveProduct();
-
         m.addAttribute("categories", categories);
         m.addAttribute("products", products);
-
         return "product";
     }
 
